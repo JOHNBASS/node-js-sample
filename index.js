@@ -28,6 +28,13 @@ app.get('/index', function(request, response) {
   	response.render('pages/index');
 });
 
+app.get('/page', function(request, response) {
+
+	console.log("Got response: " + response.statusCode);
+   console.log("ddos:" + request.url);
+  	response.render('pages/page1');
+});
+
 app.get('/cool', function(request, response) {
   response.send(cool());
 });
