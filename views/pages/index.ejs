@@ -35,7 +35,11 @@ hello
   
   function check(){
       ga('send', 'event', 'Videos', 'play', 'Fall Campaign');
-    ga('send', 'page2', location.pathname);
+      ga('set', 'page','/about');
+
+      ga('clientTracker.send', 'event', 'button', 'play', 'Fall Campaign');
+      ga('send', 'page2', location.pathname);
+
   }
 
 </script>
