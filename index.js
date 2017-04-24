@@ -2,6 +2,8 @@ var express = require('express');
 var http = require('http');
 var cool = require('cool-ascii-faces');
 
+var requestify = require('requestify'); 
+
 var app = express();
 
 app.use(express.static(__dirname + '/public'));
@@ -19,6 +21,15 @@ app.get('/', function(request, response) {
 	console.log("Got response: " + response.statusCode);
    console.log("ddos:" + request.url);
   response.send('Hello World!');
+});
+
+
+app.get('/api', function(request, response) {
+
+	console.log("Got response: " + response.statusCode);
+   console.log("ddos:" + request.url);
+   Invokpostdata(request.email,request.Toaccount,request.Toemail,request.Amount);
+  //response.send('Hello World!');
 });
 
 app.get('/index', function(request, response) {
@@ -50,3 +61,48 @@ http.get({'host': 'api.ipify.org', 'port': 80, 'path': '/'}, function(resp) {
     console.log("My public IP address is: " + ip);
   });
 });
+
+
+function Invokpostdata(email,Toaccount,Toemail,Amount)
+{
+	requestify.request('https://transferhelper-6fc9a.firebaseio.com/users.json', {
+	    method: 'POST',
+	    body: {
+	        Email: email,
+	        Toaccount: Toaccount,
+	        Toemail:Toemail,
+	        Amount:Amount
+	    },
+	    headers: {
+	        'X-Forwarded-By': 'me'
+	    },
+	    cookies: {
+	        mySession: 'some cookie value'
+	    },
+	    auth: {
+	        // username: 'foo',
+	        // password: 'bar'
+	    },
+	    dataType: 'json'        
+	})
+	.then(function(response) {
+	    // get the response body
+	    response.getBody();
+
+	    // get the response headers
+	    response.getHeaders();
+
+	    // get specific response header
+	    response.getHeader('Accept');
+
+	    // get the code
+	    response.getCode();
+
+	    // Get the response raw body
+	    response.body;
+	});
+}
+
+
+
+
