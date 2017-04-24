@@ -12,6 +12,7 @@
   ga('create', 'UA-96545365-2', 'auto');
   ga('send', 'pageview');
   ga('send', 'screenview', {screenName: 'Home'});
+ga('send', 'pageview', location.pathname);
 
 </script>
 
@@ -32,7 +33,7 @@ hello
   
   function check(){
       ga('send', 'event', 'Videos', 'play', 'Fall Campaign');
-
+    ga('send', 'page2', location.pathname);
   }
 
 </script>
