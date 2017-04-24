@@ -10,9 +10,11 @@
   })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-96545365-2', 'auto');
+  ga('create', 'UA-96545365-2', 'auto', 'clientTracker');
   ga('send', 'pageview');
+  ga('clientTracker.send', 'pageview');
   ga('send', 'screenview', {screenName: 'Home'});
-ga('send', 'pageview', location.pathname);
+  ga('send', 'pageview', location.pathname);
 
 </script>
 
