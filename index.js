@@ -45,7 +45,7 @@ app.get('/get', function(request, response) {
 	//console.log("Got response: " + response.statusCode);
    //console.log("ddos:" + request.url);
    Getdata(request.query.email);
-   response.send(datalist.size());
+   response.send(datalist.KiXsVJDyOVxuD0zdHFn);
    //for()
 
    //response.send('{"messages":[{"text":'+request.query.email+'}]}');
