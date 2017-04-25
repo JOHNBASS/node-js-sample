@@ -46,7 +46,7 @@ app.get('/get', function(request, response) {
    //console.log("ddos:" + request.url);
    Getdata(request.query.email);
    var obj = JSON.stringify(datalist);
-   response.send(datalist+obj.length);
+   response.send(datalist.val();+obj.length);
 
    //for()
 
