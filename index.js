@@ -47,17 +47,26 @@ app.get('/get', function(request, response) {
    //console.log("ddos:" + request.url);
    Getdata(request.query.email);
 
-   //var count = Object.keys(datalist).length;
+   var count = getKeys(datalist).length;
+
    //length();
    //var obj = JSON.stringify(datalist);
 
-
-   response.send(datalist.length());
+   response.send(count);
 
    //for()
 
    //response.send('{"messages":[{"text":'+request.query.email+'}]}');
 });
+
+var getKeys = function(obj){
+   var keys = [];
+   for(var key in obj){
+      keys.push(key);
+   }
+   return keys;
+}
+
 
 app.get('/index', function(request, response) {
 
