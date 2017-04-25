@@ -29,7 +29,7 @@ app.get('/api', function(request, response) {
 	console.log("Got response: " + response.statusCode);
    console.log("ddos:" + request.url);
    Invokpostdata(request.query.email,request.query.Toaccount,request.query.Toemail,request.query.Amount);
-  //response.send('Hello World!');
+   response.send('ok');
 });
 
 app.get('/index', function(request, response) {
