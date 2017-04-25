@@ -39,11 +39,13 @@ app.get('/api', function(request, response) {
    	response.send('{"messages":[{"text":"in db"}]}');
 });
 
+var datalist;
 app.get('/get', function(request, response) {
 
 	//console.log("Got response: " + response.statusCode);
    //console.log("ddos:" + request.url);
-   response.send(Getdata(request.query.email));
+   Getdata(request.query.email);
+   response.send(datalist);
 
    //response.send('{"messages":[{"text":'+request.query.email+'}]}');
 });
@@ -152,7 +154,7 @@ function Getdata(email)
 	    // Get the response raw body
 	    response.body;
 
-	    return  response.getBody();
+	    datalist = response.getBody();
 
 	});
 }
