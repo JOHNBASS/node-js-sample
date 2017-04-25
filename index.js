@@ -47,7 +47,7 @@ app.get('/get', function(request, response) {
    //console.log("ddos:" + request.url);
    Getdata(request.query.email);
 
-   var count = Object.keys(datalist).length;
+   //var count = Object.keys(datalist).length;
    //length();
    //var obj = JSON.stringify(datalist);
 
