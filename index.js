@@ -6,6 +6,7 @@ var requestify = require('requestify');
 
 var dateTime = require('node-datetime');
 
+
 var app = express();
 
 app.use(express.static(__dirname + '/public'));
@@ -45,23 +46,12 @@ app.get('/get', function(request, response) {
 	//console.log("Got response: " + response.statusCode);
    //console.log("ddos:" + request.url);
    Getdata(request.query.email);
-   var obj = JSON.stringify(datalist);
 
-	datalist.on("value", function(snapshot) {
-	      var newPost = snapshot.val();
-	      console.log(newPost);
-	      datalist.on("child_added", function(newPost,pre){
-	          newchild=newPost.val();
-	          console.log(newchild); 
-	          var n=newPost.key();
-	          console.log("this is key: "+n);
-	          console.log("Name: "+newchild.name);
-	          console.log("Price: "+newchild.price);
-	          console.log("Quantity: "+newchild.quantity);
-	      });  
-	  });
-   
-   response.send(datalist.val();+obj.length);
+   var count = Object.keys(datalist).length;
+   //var obj = JSON.stringify(datalist);
+
+
+   response.send(count+obj.length);
 
    //for()
 
