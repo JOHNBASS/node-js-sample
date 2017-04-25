@@ -52,7 +52,7 @@ app.get('/get', function(request, response) {
    //var obj = JSON.stringify(datalist);
 
 
-   response.send(count);
+   response.send(datalist.length());
 
    //for()
 
