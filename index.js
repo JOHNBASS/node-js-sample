@@ -47,9 +47,10 @@ app.get('/get', function(request, response) {
    //console.log("ddos:" + request.url);
    Getdata(request.query.email, function() {
 
-   		var count = getKeys(datalist).length;
+   		var counts = getKeys(datalist).length;
    		console.log("D:" + JSON.stringify(datalist));
-		console.log("D:" + count);
+		console.log("D:" + counts);
+		console.log("D:" + counts.Amount);
    	 	response.send('HI');
    });
 
