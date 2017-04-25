@@ -48,11 +48,12 @@ app.get('/get', function(request, response) {
    Getdata(request.query.email);
 
    var count = getKeys(datalist).length;
-
+   console.log("D:" + datalist);
+	console.log("D:" + count);
    //length();
    //var obj = JSON.stringify(datalist);
 
-   response.send(count);
+   response.send('HI');
 
    //for()
 
