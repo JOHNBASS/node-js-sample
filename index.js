@@ -28,7 +28,7 @@ app.get('/api', function(request, response) {
 
 	console.log("Got response: " + response.statusCode);
    console.log("ddos:" + request.url);
-   Invokpostdata(request.email,request.Toaccount,request.Toemail,request.Amount);
+   Invokpostdata(request.query.email,request.query.Toaccount,request.query.Toemail,request.query.Amount);
   //response.send('Hello World!');
 });
 
