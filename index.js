@@ -4,6 +4,8 @@ var cool = require('cool-ascii-faces');
 
 var requestify = require('requestify'); 
 
+var dateTime = require('node-datetime');
+
 var app = express();
 
 app.use(express.static(__dirname + '/public'));
@@ -24,12 +26,26 @@ app.get('/', function(request, response) {
 });
 
 
+
+
 app.get('/api', function(request, response) {
 
-	console.log("Got response: " + response.statusCode);
-   console.log("ddos:" + request.url);
-   Invokpostdata(request.query.email,request.query.Toaccount,request.query.Toemail,request.query.Amount);
-   response.send('{"messages":[{"text":"in db"}]}');
+	//console.log("Got response: " + response.statusCode);
+   	//console.log("ddos:" + request.url);
+   	var dt = dateTime.create();
+	var formatted = dt.format('Y-m-d H:M:S');
+	//console.log(formatted);
+   	Invokpostdata(request.query.email,request.query.Toaccount,request.query.Toemail,request.query.Amount,formatted);
+   	response.send('{"messages":[{"text":"in db"}]}');
+});
+
+app.get('/get', function(request, response) {
+
+	//console.log("Got response: " + response.statusCode);
+   //console.log("ddos:" + request.url);
+   response.send(Getdata(request.query.email));
+
+   //response.send('{"messages":[{"text":'+request.query.email+'}]}');
 });
 
 app.get('/index', function(request, response) {
@@ -63,7 +79,7 @@ http.get({'host': 'api.ipify.org', 'port': 80, 'path': '/'}, function(resp) {
 });
 
 
-function Invokpostdata(email,Toaccount,Toemail,Amount)
+function Invokpostdata(email,Toaccount,Toemail,Amount,date)
 {
 	requestify.request('https://transferhelper-6fc9a.firebaseio.com/users.json', {
 	    method: 'POST',
@@ -71,7 +87,8 @@ function Invokpostdata(email,Toaccount,Toemail,Amount)
 	        Email: email,
 	        Toaccount: Toaccount,
 	        Toemail:Toemail,
-	        Amount:Amount
+	        Amount:Amount,
+	        DateTime:date
 	    },
 	    headers: {
 	        'X-Forwarded-By': 'me'
@@ -100,6 +117,43 @@ function Invokpostdata(email,Toaccount,Toemail,Amount)
 
 	    // Get the response raw body
 	    response.body;
+	});
+}
+
+function Getdata(email)
+{
+	requestify.request('https://transferhelper-6fc9a.firebaseio.com/users.json', {
+	    method: 'get',
+	    headers: {
+	        'X-Forwarded-By': 'me'
+	    },
+	    cookies: {
+	        mySession: 'some cookie value'
+	    },
+	    auth: {
+	        // username: 'foo',
+	        // password: 'bar'
+	    },
+	    dataType: 'json'        
+	})
+	.then(function(response) {
+	    // get the response body
+	    response.getBody();
+
+	    // get the response headers
+	    response.getHeaders();
+
+	    // get specific response header
+	    response.getHeader('Accept');
+
+	    // get the code
+	    response.getCode();
+
+	    // Get the response raw body
+	    response.body;
+
+	    return  response.getBody();
+
 	});
 }
 
