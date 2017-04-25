@@ -45,15 +45,19 @@ app.get('/get', function(request, response) {
 
 	//console.log("Got response: " + response.statusCode);
    //console.log("ddos:" + request.url);
-   Getdata(request.query.email);
+   Getdata(request.query.email, function() {
 
-   var count = getKeys(datalist).length;
-   console.log("D:" + JSON.stringify(datalist));
-	console.log("D:" + count);
+   		var count = getKeys(datalist).length;
+   		console.log("D:" + JSON.stringify(datalist));
+		console.log("D:" + count);
+   	 	response.send('HI');
+   });
+
+
    //length();
    //var obj = JSON.stringify(datalist);
 
-   response.send('HI');
+
 
    //for()
 
@@ -141,7 +145,7 @@ function Invokpostdata(email,Toaccount,Toemail,Amount,date)
 	});
 }
 
-function Getdata(email)
+function Getdata(email,callback)
 {
 	requestify.request('https://transferhelper-6fc9a.firebaseio.com/users.json', {
 	    method: 'get',
@@ -174,6 +178,7 @@ function Getdata(email)
 	    response.body;
 
 	    datalist = response.getBody();
+	    callback();
 
 	});
 }
