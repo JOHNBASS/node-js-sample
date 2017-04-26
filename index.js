@@ -51,7 +51,7 @@ app.get('/get', function(request, response) {
    		var counts = getKeys(datalist).length;
    		console.log("D:" + JSON.stringify(datalist));
 		console.log("D:" + counts);
-		console.log("D:" + counts[0].Amount);
+		console.log("D:" + counts[0]);
    	 	response.send('HI');
    });
 
