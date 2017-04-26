@@ -48,10 +48,10 @@ app.get('/get', function(request, response) {
    //console.log("ddos:" + request.url);
    Getdata(request.query.email, function() {
 		var counts = [];
-   		counts = getKeys(datalist).length;
+   		counts = getKeys(datalist);
    		console.log("D:" + JSON.stringify(datalist));
-		console.log("D:" + counts);
-		console.log("Dw:" + counts);
+		console.log("D:" + counts[0].Amount);
+		console.log("Dw:" + counts.length);
    	 	response.send('HI');
    });
 
