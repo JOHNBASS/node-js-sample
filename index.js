@@ -60,11 +60,11 @@ app.get('/get', function(request, response) {
 			Emails = datalist[keyc].Email;
 			Toaccounts = datalist[keyc].Toaccount;
 			Toemails = datalist[keyc].Toemail;
-			SrtingPonse = Emails +" to " +Toaccounts+" by "+Toaccounts+" Amounts:"+ Amounts +" " ;
-			response.send('{"messages":[{"text":'+'"'+SrtingPonse.toString()+'"'+'}]}');
+			SrtingPonse += Emails +" to " +Toaccounts+" by "+Toaccounts+" Amounts:"+ Amounts +"       " ;
+
    		}
 
-   		//response.send('{"messages":[{"text":'+'"'+SrtingPonse.toString()+'"'+'}]}');
+   		response.send('{"messages":[{"text":'+'"'+SrtingPonse.toString()+'"'+'}]}');
 		//console.log("D:" + datalist[keyc].Amount);
 		//console.log("Dw:" + counts.length);
    	 	//response.send('HI');
