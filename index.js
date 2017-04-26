@@ -47,10 +47,9 @@ app.get('/get', function(request, response) {
 	//console.log("Got response: " + response.statusCode);
    //console.log("ddos:" + request.url);
    Getdata(request.query.email, function() {
-		var counts = [];
-   		counts = getKeys(datalist);
+   		var counts = getKeys(datalist);
    		console.log("D:" + JSON.stringify(datalist));
-		console.log("D:" + counts[0].Amount);
+		console.log("D:" + counts[0]);
 		console.log("Dw:" + counts.length);
    	 	response.send('HI');
    });
