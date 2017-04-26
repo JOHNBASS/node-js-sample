@@ -70,6 +70,7 @@ var getKeys = function(obj){
 	var keys = [];
    for(var key in obj){
    		console.log("D:" + key);
+   		console.log("D:" + key.Amount);
       keys.push(key);
    }
    return keys;
