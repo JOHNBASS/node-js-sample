@@ -49,7 +49,7 @@ app.get('/get', function(request, response) {
    Getdata(request.query.email, function() {
    		var counts = getKeys(datalist);
    		console.log("D:" + JSON.stringify(datalist));
-		console.log("D:" + datalist["-KiXsVJDyOVxuD0zdHFn"]);
+		console.log("D:" + datalist["-KiXsVJDyOVxuD0zdHFn"].Amount);
 		console.log("Dw:" + counts.length);
    	 	response.send('HI');
    });
