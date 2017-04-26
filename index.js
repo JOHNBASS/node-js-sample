@@ -47,11 +47,11 @@ app.get('/get', function(request, response) {
 	//console.log("Got response: " + response.statusCode);
    //console.log("ddos:" + request.url);
    Getdata(request.query.email, function() {
-
-   		var counts = getKeys(datalist).length;
+		var counts = [];
+   		counts = getKeys(datalist).length;
    		console.log("D:" + JSON.stringify(datalist));
 		console.log("D:" + counts);
-		console.log("Dw:" + counts[0]);
+		console.log("Dw:" + counts);
    	 	response.send('HI');
    });
 
