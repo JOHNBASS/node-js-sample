@@ -41,18 +41,32 @@ app.get('/api', function(request, response) {
 });
 
 var datalist;
-var Amounts = [];
 app.get('/get', function(request, response) {
 
 	//console.log("Got response: " + response.statusCode);
    //console.log("ddos:" + request.url);
    Getdata(request.query.email, function() {
    		var counts = getKeys(datalist);
-   		console.log("D:" + JSON.stringify(datalist));
-   		var keyc = counts[0];
-		console.log("D:" + datalist[keyc].Amount);
-		console.log("Dw:" + counts.length);
-   	 	response.send('HI');
+   		//console.log("D:" + JSON.stringify(datalist));
+   		var Amounts ;
+   		var Emails ;
+   		var Toaccounts ;
+   		var Toemails ;
+   		var SrtingPonse;
+
+   		for(i=0;i<=(counts.length-1);i++){
+   			var keyc = counts[i];
+   			Amounts = datalist[keyc].Amount;
+			Emails = datalist[keyc].Email;
+			Toaccounts = atalist[keyc].Toaccount;
+			Toemails = atalist[keyc].Toemail;
+			SrtingPonse += Emails +" to " +Toaccounts+" by "+Toaccounts+" Amounts:"+ Amounts +" ||" ;
+   		}
+   		
+   		response.send('{"messages":[{"text":'+SrtingPonse+'}]}');
+		//console.log("D:" + datalist[keyc].Amount);
+		//console.log("Dw:" + counts.length);
+   	 	//response.send('HI');
    });
 
 
