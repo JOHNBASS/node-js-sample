@@ -60,9 +60,9 @@ app.get('/get', function(request, response) {
 			Emails = datalist[keyc].Email;
 			Toaccounts = datalist[keyc].Toaccount;
 			Toemails = datalist[keyc].Toemail;
-			SrtingPonse += Emails +" to " +Toaccounts+" by "+Toaccounts+" Amounts:"+ Amounts +" ||" ;
+			SrtingPonse += Emails +" to " +Toaccounts+" by "+Toaccounts+" Amounts:"+ Amounts +" ;" ;
    		}
-   		
+
    		response.send('{"messages":[{"text":'+SrtingPonse+'}]}');
 		//console.log("D:" + datalist[keyc].Amount);
 		//console.log("Dw:" + counts.length);
