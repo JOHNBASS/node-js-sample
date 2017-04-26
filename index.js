@@ -41,6 +41,7 @@ app.get('/api', function(request, response) {
 });
 
 var datalist;
+var keys = [];
 app.get('/get', function(request, response) {
 
 	//console.log("Got response: " + response.statusCode);
@@ -66,8 +67,8 @@ app.get('/get', function(request, response) {
 });
 
 var getKeys = function(obj){
-   var keys = [];
    for(var key in obj){
+   		console.log("D:" + key);
       keys.push(key);
    }
    return keys;
