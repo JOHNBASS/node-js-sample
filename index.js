@@ -58,8 +58,8 @@ app.get('/get', function(request, response) {
    			var keyc = counts[i];
    			Amounts = datalist[keyc].Amount;
 			Emails = datalist[keyc].Email;
-			Toaccounts = atalist[keyc].Toaccount;
-			Toemails = atalist[keyc].Toemail;
+			Toaccounts = datalist[keyc].Toaccount;
+			Toemails = datalist[keyc].Toemail;
 			SrtingPonse += Emails +" to " +Toaccounts+" by "+Toaccounts+" Amounts:"+ Amounts +" ||" ;
    		}
    		
