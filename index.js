@@ -41,7 +41,7 @@ app.get('/api', function(request, response) {
 });
 
 var datalist;
-var keys = [];
+
 app.get('/get', function(request, response) {
 
 	//console.log("Got response: " + response.statusCode);
@@ -51,7 +51,7 @@ app.get('/get', function(request, response) {
    		var counts = getKeys(datalist).length;
    		console.log("D:" + JSON.stringify(datalist));
 		console.log("D:" + counts);
-		console.log("D:" + counts.Amount);
+		console.log("D:" + counts[0].Amount);
    	 	response.send('HI');
    });
 
@@ -67,6 +67,7 @@ app.get('/get', function(request, response) {
 });
 
 var getKeys = function(obj){
+	var keys = [];
    for(var key in obj){
    		console.log("D:" + key);
       keys.push(key);
