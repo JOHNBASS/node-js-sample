@@ -6,6 +6,7 @@ var requestify = require('requestify');
 
 var dateTime = require('node-datetime');
 
+var firebase = require('firebase');
 
 var app = express();
 
@@ -36,7 +37,7 @@ app.get('/api', function(request, response) {
    	var dt = dateTime.create();
 	var formatted = dt.format('Y-m-d H:M:S');
 	//console.log(formatted);
-   	Invokpostdata(request.query.email,request.query.Toaccount,request.query.Toemail,request.query.Amount,formatted);
+   	Invokpostdata(request.query.email,request.query.Toaccount,request.query.Toemail,request.query.Amount,request.query.account,formatted);
    	response.send('{"messages":[{"text":"in db"}]}');
 });
 
@@ -124,7 +125,7 @@ http.get({'host': 'api.ipify.org', 'port': 80, 'path': '/'}, function(resp) {
 });
 
 
-function Invokpostdata(email,Toaccount,Toemail,Amount,date)
+function Invokpostdata(email,Toaccount,Toemail,Amount,account,date)
 {
 	requestify.request('https://transferhelper-6fc9a.firebaseio.com/users.json', {
 	    method: 'POST',
@@ -133,6 +134,7 @@ function Invokpostdata(email,Toaccount,Toemail,Amount,date)
 	        Toaccount: Toaccount,
 	        Toemail:Toemail,
 	        Amount:Amount,
+	        Account:account,
 	        DateTime:date
 	    },
 	    headers: {
