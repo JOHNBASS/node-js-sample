@@ -8,6 +8,8 @@ var dateTime = require('node-datetime');
 
 var firebase = require('firebase');
 
+
+
 var app = express();
 
 app.use(express.static(__dirname + '/public'));
@@ -28,6 +30,22 @@ app.get('/', function(request, response) {
 });
 
 
+
+app.get('/email', function(request, response) {
+
+
+	var send = require('gmail-send')({
+	  user: 'transferhelpertw@gmail.com',           // Your GMail account used to send emails 
+	  pass: 'marklingmail',           // Application-specific password 
+	  to:   request.query.Toemail,           // Send to yourself 
+	                                    // you also may set array of recipients:  
+	                                    // [ 'user1@gmail.com', 'user2@gmail.com' ] 
+	  subject: 'ping',
+	  text:    'gmail-send example 2'   // Plain text 
+	})();  
+
+	response.send('{"messages":[{"text":"send email"}]}');
+});
 
 
 app.get('/api', function(request, response) {
