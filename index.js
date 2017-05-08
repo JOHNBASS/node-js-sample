@@ -12,16 +12,14 @@ var gmailNode = require('gmail-node');
 
 var clientSecret = {
     installed: {
-        client_id: "722914513781-5vdf2s8d31ict0b1ijl11lv50sgqi01o.apps.googleusercontent.com",
-        project_id: "transferhelper-6fc9a",
+        client_id: "601728468323-00stvh0aj7qpqovoji7hiu311d49s0g5.apps.googleusercontent.com",
+        project_id: "transferhelperv2-167003",
         auth_uri: "https://accounts.google.com/o/oauth2/auth",
         token_uri: "https://accounts.google.com/o/oauth2/token",
         auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
-        client_secret: "GMHS8Q0_XL_XxfUbAFfBHXVF",
+        client_secret: "YiGtroMEkMg5VMo1ZiQ4ZVaT",
         redirect_uris: [
-            "https://transferhelper-6fc9a.firebaseapp.com/__/auth/handler",
             "http://localhost:8080",
-            "http://localhost:",
             "https://mysterious-caverns-56555.herokuapp.com"
         ]
     }
