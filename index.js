@@ -47,13 +47,43 @@ app.get('/', function(request, response) {
 
 
 
-app.get('/email', function(request, response) {
+app.get('/me_email', function(request, response) {
+
+var message = "轉帳email:" + request.query.email + "轉帳名字:" + request.query.first_name+request.query.last_name + "轉帳金額:" + request.query.Amount
 
 // Message 
 var testMessage = {
     to: request.query.email,
     subject: request.query.subject,
-    message: request.query.message
+    message: message
+};
+ 
+// ClientSecret: 
+gmailNode.init(clientSecret, './token.json', initComplete);
+ 
+function initComplete(err, dataObject) {
+    if(err){
+        	console.log('Error ', err);
+    }else {
+        gmailNode.send(testMessage, function (err, data) {
+            console.log(err,data);
+        });
+    }
+}
+
+	response.send('{"messages":[{"text":"send email"}]}');
+});
+
+
+app.get('/to_email', function(request, response) {
+
+var message = "轉帳email:" + request.query.Toemail + "轉帳帳戶:" + request.query.Toaccount + "轉帳金額:" + request.query.Amount
+
+// Message 
+var testMessage = {
+    to: request.query.Toemail,
+    subject: request.query.subject,
+    message: message
 };
  
 // ClientSecret: 
