@@ -52,8 +52,8 @@ app.get('/email', function(request, response) {
 // Message 
 var testMessage = {
     to: request.query.email,
-    subject: 'Test Subject',
-    message: 'Test Email'
+    subject: request.query.subject,
+    message: request.query.message
 };
  
 // ClientSecret: 
