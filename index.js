@@ -8,7 +8,24 @@ var dateTime = require('node-datetime');
 
 var firebase = require('firebase');
 
+var gmailNode = require('gmail-node');
 
+var clientSecret = {
+    installed: {
+        client_id: "722914513781-5vdf2s8d31ict0b1ijl11lv50sgqi01o.apps.googleusercontent.com",
+        project_id: "transferhelper-6fc9a",
+        auth_uri: "https://accounts.google.com/o/oauth2/auth",
+        token_uri: "https://accounts.google.com/o/oauth2/token",
+        auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
+        client_secret: "GMHS8Q0_XL_XxfUbAFfBHXVF",
+        redirect_uris: [
+            "https://transferhelper-6fc9a.firebaseapp.com/__/auth/handler",
+            "http://localhost:8080",
+            "http://localhost:",
+            "https://mysterious-caverns-56555.herokuapp.com"
+        ]
+    }
+};
 
 var app = express();
 
@@ -33,16 +50,25 @@ app.get('/', function(request, response) {
 
 app.get('/email', function(request, response) {
 
-
-	var send = require('gmail-send')({
-	  user: 'transferhelpertw@gmail.com',           // Your GMail account used to send emails 
-	  pass: 'marklingmail',           // Application-specific password 
-	  to:   request.query.Toemail,           // Send to yourself 
-	                                    // you also may set array of recipients:  
-	                                    // [ 'user1@gmail.com', 'user2@gmail.com' ] 
-	  subject: 'ping',
-	  text:    'gmail-send example 2'   // Plain text 
-	})();  
+// Message 
+var testMessage = {
+    to: request.query.email,
+    subject: 'Test Subject',
+    message: 'Test Email'
+};
+ 
+// ClientSecret: 
+gmailNode.init(clientSecret, './token.json', initComplete);
+ 
+function initComplete(err, dataObject) {
+    if(err){
+        	console.log('Error ', err);
+    }else {
+        gmailNode.send(testMessage, function (err, data) {
+            console.log(err,data);
+        });
+    }
+}
 
 	response.send('{"messages":[{"text":"send email"}]}');
 });
