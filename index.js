@@ -164,7 +164,7 @@ app.get('/wsepost', function(request, response) {
 	var _date = dt.format('Y-m-d');
 	var _time = dt.format('H:M:S');
 	//console.log(formatted);
-   	Invokwsepostdata(request.query.fbid,_date,_time,request.query.eatname,request.query.imageurl);
+   	Invokwsepostdata(request.query.fb_id,_date,_time,request.query.eatname,request.query.imageurl);
    	
    	response.send('{"messages":[{"text":"你吃了"'+request.query.eatname+'}]}');
 
@@ -311,7 +311,7 @@ function Getdata(email,callback)
 
 function Invokwsepostdata(user,date,time,ename,url)
 {
-	requestify.request('https://transferhelper-6fc9a.firebaseio.com/'+user+'.json', {
+	requestify.request('https://wseteambuilding.firebaseio.com/'+user+'.json', {
 	    method: 'POST',
 	    body: {
 	        date: date,
