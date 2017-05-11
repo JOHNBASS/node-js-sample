@@ -164,10 +164,10 @@ app.get('/wsepost', function(request, response) {
 	var _date = dt.format('Y-m-d');
 	var _time = dt.format('H:M:S');
 	//console.log(formatted);
-   	Invokwsepostdata(request.query.fb_id,_date,_time,request.query.eatname,request.query.imageurl);
+   	Invokwsepostdata(request.query.fbid,_date,_time,request.query.eatname,request.query.imageurl);
    	
    	response.send('{"messages":[{"text":"你吃了"'+request.query.eatname+'}]}');
-   	
+
 });
 
 app.get('/wseget', function(request, response) {
