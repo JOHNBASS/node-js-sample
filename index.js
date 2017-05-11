@@ -155,6 +155,34 @@ app.get('/get', function(request, response) {
    //response.send('{"messages":[{"text":'+request.query.email+'}]}');
 });
 
+///////////////////////////
+app.get('/wsepost', function(request, response) {
+
+	//console.log("Got response: " + response.statusCode);
+   	//console.log("ddos:" + request.url);
+   	var dt = dateTime.create();
+	var _date = dt.format('Y-m-d');
+	var _time = dt.format('H:M:S');
+	//console.log(formatted);
+   	Invokwsepostdata(request.query.fb_id,_date,_time,request.query.eatname,request.query.imageurl);
+   	
+   	response.send('{"messages":[{"text":"你吃了"'+request.query.eatname+'}]}');
+   	
+});
+
+app.get('/wseget', function(request, response) {
+
+	//console.log("Got response: " + response.statusCode);
+   	//console.log("ddos:" + request.url);
+   	var dt = dateTime.create();
+	var formatted = dt.format('Y-m-d H:M:S');
+	//console.log(formatted);
+   	Invokpostdata(request.query.email,request.query.Toaccount,request.query.Toemail,request.query.Amount,request.query.account,formatted);
+   	response.send('{"messages":[{"text":"in db"}]}');
+});
+
+
+
 var getKeys = function(obj){
 	var keys = [];
    for(var key in obj){
@@ -278,6 +306,48 @@ function Getdata(email,callback)
 	});
 }
 
+
+////////////////
+
+function Invokwsepostdata(user,date,time,ename,url)
+{
+	requestify.request('https://transferhelper-6fc9a.firebaseio.com/'+user+'.json', {
+	    method: 'POST',
+	    body: {
+	        date: date,
+	        time: time,
+	        eat:ename,
+	        image:url
+	    },
+	    headers: {
+	        'X-Forwarded-By': 'me'
+	    },
+	    cookies: {
+	        mySession: 'some cookie value'
+	    },
+	    auth: {
+	        // username: 'foo',
+	        // password: 'bar'
+	    },
+	    dataType: 'json'        
+	})
+	.then(function(response) {
+	    // get the response body
+	    response.getBody();
+
+	    // get the response headers
+	    response.getHeaders();
+
+	    // get specific response header
+	    response.getHeader('Accept');
+
+	    // get the code
+	    response.getCode();
+
+	    // Get the response raw body
+	    response.body;
+	});
+}
 
 
 
