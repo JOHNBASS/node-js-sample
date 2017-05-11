@@ -166,7 +166,7 @@ app.get('/wsepost', function(request, response) {
 	//console.log(formatted);
    	Invokwsepostdata(request.query.fb_id,_date,_time,request.query.eatname,request.query.imageurl);
    	
-   	response.send('{"messages":[{"text":"你吃了"'+request.query.eatname+'}]}');
+   	response.send('{"messages":[{"text":"你吃了'+request.query.eatname+'"}]}');
 
 });
 
