@@ -164,7 +164,7 @@ app.get('/wsepost', function(request, response) {
 	var _date = dt.format('Y-m-d');
 	var _time = dt.format('H:M:S');
 	//console.log(formatted);
-   	Invokwsepostdata(request.query.chatfueluserid,_date,_time,request.query.eatname,request.query.imageurl);
+   	Invokwsepostdata(request.query.user_id,_date,_time,request.query.eatname,request.query.imageurl);
    	
    	response.send('{"messages":[{"text":"你吃了'+request.query.eatname+'"}]}');
 
