@@ -134,7 +134,7 @@ app.get('/get', function(request, response) {
 			Emails = datalist[keyc].Email;
 			Toaccounts = datalist[keyc].Toaccount;
 			Toemails = datalist[keyc].Toemail;
-			SrtingPonse += Emails +" to " +Toaccounts+" by "+Toaccounts+" Amounts:"+ Amounts +"      ||" ;
+			SrtingPonse += Emails +" to " +Toaccounts+" by "+Toaccounts+" Amounts:"+ Amounts  ;
 
    		}
 
@@ -164,7 +164,7 @@ app.get('/wsepost', function(request, response) {
 	var _date = dt.format('Y-m-d');
 	var _time = dt.format('H:M:S');
 	//console.log(formatted);
-   	Invokwsepostdata(request.query.user_id,_date,_time,request.query.eatname,request.query.imageurl);
+   	Invokwsepostdata(request.query.user_id,_date,_time,request.query.eatname,request.query.imageurl,request.query.name);
    	
    	response.send('{"messages":[{"text":"你吃了'+request.query.eatname+'"}]}');
 
@@ -309,7 +309,7 @@ function Getdata(email,callback)
 
 ////////////////
 
-function Invokwsepostdata(user,date,time,ename,url)
+function Invokwsepostdata(user,date,time,ename,url,name)
 {
 	requestify.request('https://wseteambuilding.firebaseio.com/'+user+'.json', {
 	    method: 'POST',
@@ -317,7 +317,8 @@ function Invokwsepostdata(user,date,time,ename,url)
 	        date: date,
 	        time: time,
 	        eat:ename,
-	        image:url
+	        image:url,
+	        name:name
 	    },
 	    headers: {
 	        'X-Forwarded-By': 'me'
