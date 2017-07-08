@@ -192,9 +192,9 @@ app.get('/onepPost', function(request, response) {
 	var _time = dt.format('H:M:S');
 	//console.log(formatted);
 	
-	//user, date, time, fbName, size, phone, address, name, status, settlement, note, fbId ,fbImage
+	//user, date, time, fbName, size, phone, address, name, status, settlement, note, fbId ,fbImage ,q
    	
-   	invokOnepPostData(request.query.user, _date, _time, request.query.fbName,request.query.size, request.query.phone, request.query.address, request.query.name, request.query.status, request.query.settlement, request.query.note, request.query.fbId, request.query.fbImage);
+   	invokOnepPostData(request.query.user, _date, _time, request.query.fbName,request.query.size, request.query.phone, request.query.address, request.query.name, "0", "0", "無", request.query.fbId, request.query.fbImage, request.query.q);
    	
    	response.send('{"messages":[{"text":"感謝您訂單送出!"}]}');
 
@@ -373,7 +373,7 @@ function Invokwsepostdata(user,date,time,ename,url,name)
 //onep
 //////////////////////////
 
-function invokOnepPostData(user, date, time, fbName, size, phone, address, name, status, settlement, note, fbId, fbImage)
+function invokOnepPostData(user, date, time, fbName, size, phone, address, name, status, settlement, note, fbId, fbImage, q)
 {
 	requestify.request('https://onepbackend.firebaseio.com/'+user+'.json', {
 	    method: 'POST',
@@ -389,7 +389,8 @@ function invokOnepPostData(user, date, time, fbName, size, phone, address, name,
 	        settlement:settlement,
 	        note:note,
 	        fbId:fbId,
-	        fbImage:fbImage
+	        fbImage:fbImage,
+	        quantity:q
 	    },
 	    headers: {
 	        'X-Forwarded-By': 'me'
