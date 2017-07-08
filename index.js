@@ -181,6 +181,25 @@ app.get('/wseget', function(request, response) {
    	response.send('{"messages":[{"text":"in db"}]}');
 });
 
+//oneP
+//////////////////////////////////////////////////////////////
+app.get('/onepPost', function(request, response) {
+
+	//console.log("Got response: " + response.statusCode);
+   	//console.log("ddos:" + request.url);
+   	var dt = dateTime.create();
+	var _date = dt.format('Y-m-d');
+	var _time = dt.format('H:M:S');
+	//console.log(formatted);
+	
+	//user, date, time, fbName, size, phone, address, name, status, settlement, note, fbId
+   	
+   	invokOnepPostData(request.query.user_id, _date, _time, request.query.fbName,request.query.size, request.query.phone, request.query.address, request.query.name, request.query.status, request.query.settlement, request.query.note, request.query.fbId);
+   	
+   	response.send('{"messages":[{"text":"感謝您訂單送出!"}]}');
+
+});
+
 
 
 var getKeys = function(obj){
@@ -350,5 +369,54 @@ function Invokwsepostdata(user,date,time,ename,url,name)
 	});
 }
 
+//onep
+//////////////////////////
+
+function invokOnepPostData(user, date, time, fbName, size, phone, address, name, status, settlement, note, fbId)
+{
+	requestify.request('https://onepbackend.firebaseio.com/'+user+'.json', {
+	    method: 'POST',
+	    body: {
+	        date: date,
+	        time: time,
+	        fbName:fbName,
+	        size:size,
+	        phone:phone,
+	        address:address,
+	        name:name,
+	        status:status,
+	        settlement:settlement,
+	        note:note,
+	        fbId:fbId
+	    },
+	    headers: {
+	        'X-Forwarded-By': 'me'
+	    },
+	    cookies: {
+	        mySession: 'some cookie value'
+	    },
+	    auth: {
+	        // username: 'foo',
+	        // password: 'bar'
+	    },
+	    dataType: 'json'        
+	})
+	.then(function(response) {
+	    // get the response body
+	    response.getBody();
+
+	    // get the response headers
+	    response.getHeaders();
+
+	    // get specific response header
+	    response.getHeader('Accept');
+
+	    // get the code
+	    response.getCode();
+
+	    // Get the response raw body
+	    response.body;
+	});
+}
 
 
