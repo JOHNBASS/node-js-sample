@@ -194,7 +194,7 @@ app.get('/onepPost', function(request, response) {
 	
 	//user, date, time, fbName, size, phone, address, name, status, settlement, note, fbId ,fbImage
    	
-   	invokOnepPostData(request.query.user_id, _date, _time, request.query.fbName,request.query.size, request.query.phone, request.query.address, request.query.name, request.query.status, request.query.settlement, request.query.note, request.query.fbId, request.query.fbImage);
+   	invokOnepPostData(request.query.user, _date, _time, request.query.fbName,request.query.size, request.query.phone, request.query.address, request.query.name, request.query.status, request.query.settlement, request.query.note, request.query.fbId, request.query.fbImage);
    	
    	response.send('{"messages":[{"text":"感謝您訂單送出!"}]}');
 
